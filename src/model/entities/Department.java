@@ -11,6 +11,14 @@ public class Department implements Serializable {
 	private Integer id;
 	private String name;
 	
+	public Department(Integer id) {
+		this.id = id;
+	}
+	
+	public Department(String name) {
+		this.name = name;
+	}
+	
 	public Department(Integer id, String name) {
 		this.id = id;
 		this.name = name;
@@ -28,6 +36,11 @@ public class Department implements Serializable {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+		
+	}
+	
 	public int hashCodeId() {
 		return Objects.hash(id);
 	}
@@ -45,13 +58,14 @@ public class Department implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Department other = (Department) obj;
-		return Objects.equals(id, other.id) || Objects.equals(name, other.name);
+		return Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
+
 	
 	
 	

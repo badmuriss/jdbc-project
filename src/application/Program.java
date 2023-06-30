@@ -1,18 +1,29 @@
 package application;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
-		Department dep = new Department(1, "Computers");
-		Seller leo = new Seller(1, "leo", "leo123@gmail.com", Date.valueOf("2001-01-30"), 2000.0, dep);
+		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
-		System.out.println(leo);
+		
+		sellerDao.getConn().setAutoCommit(false);
+		
+		
+		sellerDao.insert(new Seller("Laos", "marcddos@gmail.com", Date.valueOf("2000-01-30"), 4000.0, new Department(4)));
+		sellerDao.findByDepartment("Electronics").forEach(System.out::println);;
+		sellerDao.findAll().forEach(System.out::println);
+		
+		
+		sellerDao.getConn().commit();
 		
 	}
 	

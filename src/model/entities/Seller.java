@@ -15,6 +15,14 @@ public class Seller implements Serializable{
 	private Double baseSalary;
 	private Department department;
 	
+	public Seller(String name, String email, Date birthDate, Double baseSalary, Department department) {
+		this.name = name;
+		this.email = email;
+		this.birthDate = birthDate;
+		this.baseSalary = baseSalary;
+		this.department = department;
+	}
+	
 	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
 		this.id = id;
 		this.name = name;
@@ -68,6 +76,9 @@ public class Seller implements Serializable{
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public int hashCodeId() {
 		return Objects.hash(id);
@@ -86,7 +97,7 @@ public class Seller implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Seller other = (Seller) obj;
-		return Objects.equals(email, other.email) || Objects.equals(id, other.id);
+		return Objects.equals(email, other.email);
 	}
 
 	@Override
